@@ -1,0 +1,122 @@
+<!-- This is a static file -->
+<!-- served from your routes in server.js -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Okta Hooks Demo</title>
+    <meta name="description" content="Sample handlers for Okta Hooks">
+    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- import the webpage's stylesheet -->
+    <link rel="stylesheet" href="/style.css">
+    <!-- import JQUERY so we can display the README.md file inline -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <h1>
+      Okta Hooks Demo
+    </h1>
+
+    <script src="/socket.io/socket.io.js"></script>
+    
+    <script>
+                  
+      var socket = io();
+
+      // When messages are received from the server, display them in the Hook Viewer
+      socket.on('logMessage', function(data) { 
+        
+        var logEntry = `<div class="logEvent"><div class="logTimestamp">${getPrettyDate()}</div>`;
+       
+        if (typeof(data.logMessage) === 'string') {
+          logEntry += `<div class="logTitle">${data.logMessage}</div></div>`;           
+        } else {
+          
+          var eventBody = syntaxHighlight(JSON.stringify(data.logMessage.body));
+           
+          logEntry += `<div class="logTitle">${data.logMessage.title}</div>`;
+          logEntry += `<div class="logDescription">${data.logMessage.description}</div>`;
+          logEntry += `<div class="logBody"><pre>${eventBody}</pre></div></div></div>`        
+        }
+
+        $('#logViewer').prepend(logEntry);
+        
+      });      
+      
+      // Return date in local time format
+      function getPrettyDate() {
+        var now = new Date();
+        
+        var prettyDate = (new Date).toTimeString().slice(0,8);
+        
+        return prettyDate;
+      }
+                       
+      // Add syntax highlighting to the JSON data of the event
+      function syntaxHighlight(json) {
+        
+        console.log(json);
+
+        json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+            var cls = 'number';
+            if (/^"/.test(match)) {
+                if (/:$/.test(match)) {
+                    cls = 'key';
+                } else {
+                    cls = 'string';
+                }
+            } else if (/true|false/.test(match)) {
+                cls = 'boolean';
+            } else if (/null/.test(match)) {
+                cls = 'null';
+            }
+            return '<span class="' + cls + '">' + match + '</span>';
+        });
+      }
+                
+    </script>
+    
+    <div class="loggerHeader">
+      <div class="loggerTitle">
+        <h3>
+          Real-time Hook Viewer
+        </h3>
+      </div>
+      <div class="loggerbutton">
+        <button name="clearButton" id="clearButton">
+          clear
+        </button>
+      </div>          
+    </div>
+
+    <div class="logViewerContainer" id="logViewerContainer">
+      <div id="logViewer">
+      </div>     
+    </div>
+                              
+                                      
+    <footer>
+      Made with <a href="https://glitch.com">Glitch</a>!
+    </footer>
+
+    <!-- include the Glitch button to show what the webpage is about and
+          to make it easier for folks to view source and remix -->
+    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
+    <script src="https://button.glitch.me/button.js"></script> 
+    
+    <script>
+      $("#clearButton").click(function() {
+        $('#logViewerContainer div').html('');
+      });
+    </script>
+    
+  </body>
+</html>

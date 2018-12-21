@@ -1,0 +1,451 @@
+{
+	"info": {
+		"_postman_id": "a2b2cb71-9636-48af-a6ee-b9af8379f8ef",
+		"name": "Okta Event Hooks",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "List all webhooks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "SSWS {{apikey}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/{{eventHookEndpoint}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"{{eventHookEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get webhook by ID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "SSWS {{apikey}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/{{eventHookEndpoint}}/{{hookId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"{{eventHookEndpoint}}",
+						"{{hookId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update webhook",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "SSWS {{apikey}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"status\": \"INACTIVE\",\n        \"verification\": \"VERIFIED\",\n        \"name\": \"user.lifecycle webhook\",\n        \"events\": [\n            \"user.lifecycle.activate\",\n            \"user.lifecycle.suspend\",\n            \"user.lifecycle.create\",\n            \"user.lifecycle.deactivate\",\n            \"user.lifecycle.reactivate\",\n            \"user.lifecycle.unsuspend\",\n            \"user.lifecycle.delete.initiated\"\n        ],\n        \"channel\": {\n            \"type\": \"HTTP\",\n            \"version\": \"1.0.0\",\n            \"config\": {\n                \"uri\": \"https://cgfzm7zd37.execute-api.us-east-1.amazonaws.com/beta/okta-webhooks/user-lifecycle\",\n                \"headers\": [\n                    {\n                        \"key\": \"Content-Type\",\n                        \"value\": \"application/json\"\n                    }\n                ],\n                \"method\": \"POST\",\n                \"authScheme\": {\n                    \"type\": \"HEADER\",\n                    \"key\": \"x-api-key\",\n                    \"value\": \"{{awsapikey}}\"\n                }\n            }\n        },\n        \"created\": \"2018-11-20T20:17:06.000Z\",\n        \"lastUpdated\": \"2018-11-20T22:18:21.000Z\"\n    },"
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/{{eventHookEndpoint}}/{{hookId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"{{eventHookEndpoint}}",
+						"{{hookId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete hook by ID",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "SSWS {{apikey}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/{{eventHookEndpoint}}/{{hookId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"{{eventHookEndpoint}}",
+						"{{hookId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set webhook status to INACTIVE",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "SSWS {{apikey}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"status\": \"INACTIVE\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/webhooks/{{hookId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"webhooks",
+						"{{hookId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create user.lifecycle event hook",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "SSWS {{apikey}}"
+					},
+					{
+						"key": "",
+						"value": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"displayName\" : \"user.lifecycle event hook\",\n\t\"events\" : [\n\t\t\"user.lifecycle.create\",\n\t\t\"user.lifecycle.activate\",\n\t\t\"user.lifecycle.deactivate\",\n\t\t\"user.lifecycle.reactivate\",\n\t\t\"user.lifecycle.suspend\",\n\t\t\"user.lifecycle.unsuspend\",\n\t\t\"user.lifecycle.delete.initiated\"\n\t],\n    \"channel\" : {\n        \"type\" : \"HTTP\",\n        \"version\" : \"1.0.0\",\n        \"config\" : {\n            \"uri\" : \"{{apiurlbase}}/event/user-lifecycle\",\n            \"authScheme\" : {\n            \t\"type\" : \"HEADER\",\n                \"key\" : \"x-api-key\",\n                \"value\" : \"{{awsapikey}}\"\n            },\n            \"headers\" : [\n                {\n                    \"key\" : \"Content-Type\",\n                    \"value\" : \"application/json\"\n                }\n            ]\n        }\n    }\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/{{eventHookEndpoint}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"{{eventHookEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create hook for all events",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "SSWS {{apikey}}"
+					},
+					{
+						"key": "",
+						"value": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"displayName\" : \"event handler for all supported hooks\",\n\t\"events\" : [\n\t\t\"user.lifecycle.create\",\n\t\t\"user.lifecycle.activate\",\n\t\t\"user.lifecycle.deactivate\",\n\t\t\"user.lifecycle.reactivate\",\n\t\t\"user.lifecycle.suspend\",\n\t\t\"user.lifecycle.unsuspend\",\n\t\t\"user.lifecycle.delete.initiated\",\n\t\t\"user.account.update_profile\",\n\t\t\"user.account.update_password\",\n\t\t\"user.account.reset_password\",\n\t\t\"user.session.start\",\n\t\t\"application.user_membership.add\",\n\t\t\"application.user_membership.change_password\",\n\t\t\"application.user_membership.remove\",\n\t\t\"policy.lifecycle.activate\",\n\t\t\"policy.lifecycle.update\",\n\t\t\"policy.lifecycle.deactivate\",\n\t\t\"group.user_membership.add\",\n\t\t\"group.user_membership.remove\"\n\t],\n    \"channel\" : {\n        \"type\" : \"HTTP\",\n        \"version\" : \"1.0.0\",\n        \"config\" : {\n            \"uri\" : \"{{apiurlbase}}/event\",\n            \"authScheme\" : {\n            \t\"type\" : \"HEADER\",\n                \"key\" : \"x-api-key\",\n                \"value\" : \"{{awsapikey}}\"\n            },\n            \"headers\" : [\n                {\n                    \"key\" : \"Content-Type\",\n                    \"value\" : \"application/json\"\n                }\n            ]\n        }\n    }\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/{{eventHookEndpoint}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"{{eventHookEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create user.account event hook",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "SSWS {{apikey}}"
+					},
+					{
+						"key": "",
+						"value": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"displayName\" : \"user.account event hook\",\n\t\"events\" : [\n\t\t\"user.account.update_profile\",\n\t\t\"user.account.update_password\",\n\t\t\"user.account.reset_password\"\n\t],\n    \"channel\" : {\n        \"type\" : \"HTTP\",\n        \"version\" : \"1.0.0\",\n        \"config\" : {\n            \"uri\" : \"{{apiurlbase}}/event/user-account\",\n            \"authScheme\" : {\n            \t\"type\" : \"HEADER\",\n                \"key\" : \"x-api-key\",\n                \"value\" : \"{{awsapikey}}\"\n            },\n            \"headers\" : [\n                {\n                    \"key\" : \"Content-Type\",\n                    \"value\" : \"application/json\"\n                }\n            ]\n        }\n    }\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/{{eventHookEndpoint}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"{{eventHookEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create user.session event hook",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "SSWS {{apikey}}"
+					},
+					{
+						"key": "",
+						"value": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"displayName\" : \"user.session event hook\",\n\t\"events\" : [\n\t\t\"user.session.start\"\n\t],\n    \"channel\" : {\n        \"type\" : \"HTTP\",\n        \"version\" : \"1.0.0\",\n        \"config\" : {\n            \"uri\" : \"{{apiurlbase}}/event/user-session\",\n            \"authScheme\" : {\n            \t\"type\" : \"HEADER\",\n                \"key\" : \"x-api-key\",\n                \"value\" : \"{{awsapikey}}\"\n            },\n            \"headers\" : [\n                {\n                    \"key\" : \"Content-Type\",\n                    \"value\" : \"application/json\"\n                }\n            ]\n        }\n    }\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/{{eventHookEndpoint}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"{{eventHookEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create application.user_membership event hook",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "SSWS {{apikey}}"
+					},
+					{
+						"key": "",
+						"value": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"displayName\" : \"application.user_membership event hook\",\n\t\"events\" : [\n\t\t\"application.user_membership.add\",\n\t\t\"application.user_membership.change_password\",\n\t\t\"application.user_membership.remove\"\n\t],\n    \"channel\" : {\n        \"type\" : \"HTTP\",\n        \"version\" : \"1.0.0\",\n        \"config\" : {\n            \"uri\" : \"{{apiurlbase}}/event/application-user-membership\",\n            \"authScheme\" : {\n            \t\"type\" : \"HEADER\",\n                \"key\" : \"x-api-key\",\n                \"value\" : \"{{awsapikey}}\"\n            },\n            \"headers\" : [\n                {\n                    \"key\" : \"Content-Type\",\n                    \"value\" : \"application/json\"\n                }\n            ]\n        }\n    }\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/{{eventHookEndpoint}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"{{eventHookEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create group.user_membership event hook",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "SSWS {{apikey}}"
+					},
+					{
+						"key": "",
+						"value": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"displayName\" : \"group.user_membership event hook\",\n\t\"events\" : [\n\t\t\"group.user_membership.add\",\n\t\t\"group.user_membership.remove\"\n\t],\n    \"channel\" : {\n        \"type\" : \"HTTP\",\n        \"version\" : \"1.0.0\",\n        \"config\" : {\n            \"uri\" : \"{{apiurlbase}}/event/group-user-membership\",\n            \"authScheme\" : {\n            \t\"type\" : \"HEADER\",\n                \"key\" : \"x-api-key\",\n                \"value\" : \"{{awsapikey}}\"\n            },\n            \"headers\" : [\n                {\n                    \"key\" : \"Content-Type\",\n                    \"value\" : \"application/json\"\n                }\n            ]\n        }\n    }\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/{{eventHookEndpoint}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"{{eventHookEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create policy.lifecycle event hook",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "SSWS {{apikey}}"
+					},
+					{
+						"key": "",
+						"value": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"displayName\" : \"policy.lifecycle event hook\",\n\t\"events\" : [\n\t\t\"policy.lifecycle.activate\",\n\t\t\"policy.lifecycle.update\",\n\t\t\"policy.lifecycle.deactivate\"\n\t],\n    \"channel\" : {\n        \"type\" : \"HTTP\",\n        \"version\" : \"1.0.0\",\n        \"config\" : {\n            \"uri\" : \"{{apiurlbase}}/event/policy-lifecycle\",\n            \"authScheme\" : {\n            \t\"type\" : \"HEADER\",\n                \"key\" : \"x-api-key\",\n                \"value\" : \"{{awsapikey}}\"\n            },\n            \"headers\" : [\n                {\n                    \"key\" : \"Content-Type\",\n                    \"value\" : \"application/json\"\n                }\n            ]\n        }\n    }\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/{{eventHookEndpoint}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"{{eventHookEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verify event hook by ID",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "SSWS {{apikey}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/{{eventHookEndpoint}}/{{hookId}}/verify",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"{{eventHookEndpoint}}",
+						"{{hookId}}",
+						"verify"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

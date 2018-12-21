@@ -1,0 +1,152 @@
+/* styles */
+/* called by your view template */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
+  margin: 2em;
+  background-color: #c8c8c8;
+}
+
+h1 {
+  color: #6f6f6f;
+}
+
+h3 {
+  color: #666;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+p {
+  max-width: 600px;
+}
+
+form {
+  margin-bottom: 25px;
+  padding: 15px;
+  background-color: cyan;
+  display: inline-block;
+  width: 100%;
+  max-width: 340px;
+  border-radius: 3px;
+}
+
+input {
+  display: block;
+  margin-bottom: 10px;
+  padding: 5px;
+  width: 100%;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+  font-size: 16px;
+}
+
+button {
+  font-size: 16px;
+  border-radius: 3px;
+  background-color: lightgrey;
+  border: 1px solid grey;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: orange;
+}
+
+button:active {
+  box-shadow: none;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
+footer {
+  margin-top: 50px;
+  padding-top: 25px;
+  border-top: 1px solid lightgrey;
+}
+
+/* custom classes for demo */
+
+pre {
+  white-space: pre-wrap;       /* css-3 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+.logViewerContainer {
+  height: 95%;
+  min-height: 900px;
+  width: 100%;
+  background: #c6c6c6;
+  page-break-inside: avoid;
+  line-height: 1.3;
+  margin-bottom: 1.6em;
+  max-width: 100%;
+  overflow: auto;
+  display: block;
+  word-wrap: break-word;
+}
+
+.logEvent {
+  margin-bottom: 10px;
+  color: #444;
+  font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;  
+  padding: .5em;
+  background: #d6d6d6;
+  border: 1px solid #666;
+  border-radius: 4px;
+}
+
+.logTimestamp {
+  float: right;
+  font-size: 14pt;
+}
+
+.logTitle {
+  font-size: 18pt;
+}
+
+.logDescription {
+  color: #444; 
+  padding: 5px;
+}
+
+.logBody {
+  font-size: 11pt;
+  padding-left: 10px;
+  border-left: 4px solid orange;
+}
+
+.loggerHeader {
+  display: inline-block; 
+  width: 100%;
+}
+
+.loggerTitle {
+  float: left;
+  vertical-align: bottom;
+}
+
+.loggerbutton {
+  float: right;
+  position: relative;
+  margin-top: 40px;
+}
+
+/* JSON data */
+pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
+  .string { color: #273a40; }
+  .number { color: #af2929; }
+  .boolean { color: blue; }
+  .null { color: magenta; }
+  .key { color: #583c96; }
