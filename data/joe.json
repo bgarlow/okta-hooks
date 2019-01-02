@@ -1,0 +1,61 @@
+{
+	"source": null,
+	"eventId": "XiMNa63yRI-uiDqDs3Zczg",
+	"eventTime": "2018-11-28T23:32:51.000Z",
+	"data": {
+		"context": {
+			"conflicts": [],
+			"application": {
+				"name": "csv_directory_v2",
+				"id": "0oag0gbxsjUUyiyuv0h7",
+				"label": "CSV Directory - 1.3.0",
+				"status": "ACTIVE"
+			},
+			"job": {
+				"id": "ij1hwg3wppm9CHmjg0h7",
+				"type": "import:users"
+			},
+			"matches": [],
+			"policy": []
+		},
+		"action": {
+			"result": "CREATE",
+			"targetUser": null
+		},
+		"appUser": {
+			"profile": {
+				"firstName": "Joe",
+				"lastName": "Wei",
+				"empID": "2",
+				"mobilePhone": null,
+				"secondEmail": null,
+				"externalId": "2",
+				"userName": "joe@gamer.com",
+				"email": "joe@gamer.com"
+			}
+		},
+		"oktaUser": {
+			"profile": {
+				"lastName": "Wei",
+				"zipCode": null,
+				"city": null,
+				"secondEmail": null,
+				"postAddress": null,
+				"login": "joe@gamer.com",
+				"firstName": "Joe",
+				"primaryPhone": null,
+				"mobilePhone": null,
+				"streetAddress": null,
+				"countryCode": null,
+				"typeId": null,
+				"state": null,
+				"EmployeeID": "2",
+				"email": "joe@gamer.com"
+			}
+		}
+	},
+	"eventTypeVersion": "1.0",
+	"cloudEventVersion": "0.1",
+	"eventType": "com.okta.import.transform",
+	"contentType": "application/json"
+}

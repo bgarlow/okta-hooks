@@ -5,7 +5,7 @@ https://okta-hooks.glitch.me/
 
 ## About
 
-This application serves sample endpoints for Okta Hooks. It is designed to handle the currently supported Okta Event and Inline Hooks, and includes a couple of demo use cases for the registration inline hook.
+This application serves sample endpoints for Okta Hooks. It is designed to handle the currently supported Okta Hooks, and includes a couple of demo use cases for the registration inline hook.
 
 Also included are Postman collections for configuring the demo in your Okta tenant.
 
@@ -15,9 +15,11 @@ Use the included Postman collections to add hooks to your Okta org. You'll need 
 
 #### Demo Tip
 
->In order to effectively demo Hooks functionality, you should open the console in this app so that you can seen the incoming requests from Okta and the responses back to Okta (especially for the inline hooks, which may include Commands for Okta to perform).
+>In order to effectively demo Hooks functionality, you will want to show the incoming requests from Okta and the responses back to Okta (especially for the inline hooks, which may include Commands for Okta to perform).
 
->Click on the "Status" button on the left panel in Glitch to open the console. You can watch the requests from Okta and the responses back to Okta from there.
+>The index.html page of this project includes a real-time Hook Viewer feature that will capture the incoming request and outgoing responses to our hooks, and display the JSON payload in a nice formatted fashion. Just click on the "Show Live" button at the top of the page to view the index.html page served up by Glitch. As Hooks are triggered in Okta, the Hook Viewer (which uses socket.io and JQuery) will automatically update. This is a great way to demo what's happening.
+
+>If you remix your own version of this project, experiment with the Hook Viewer to display the info y ou need to convey during a demo.
 
 ## Registration Hooks (handlers/registrationHooks)
 

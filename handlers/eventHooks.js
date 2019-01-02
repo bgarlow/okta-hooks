@@ -47,7 +47,6 @@ router.post('/', function(req, res) {
   
 });
 
-
 /**
 *
 * Individual handlers for each Okta Event Hook category
