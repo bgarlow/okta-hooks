@@ -20,14 +20,20 @@
       crossorigin="anonymous"></script>
   </head>
   <body>
+    
+    <image class="logo" src="https://cdn.glitch.com/45b751fc-c842-4622-b9ef-32cc719d16b9%2FOkta_Logo_White_Small.png?1545847053479"/>
+    
     <h1>
-      Okta Hooks Demo
+      Hooks Demo
     </h1>
 
+    <!-- load up the socket.io library -->
     <script src="/socket.io/socket.io.js"></script>
+  
     
+    <!-- socket.io handler for Hook Viewer events -->
     <script>
-                  
+                 
       var socket = io();
 
       // When messages are received from the server, display them in the Hook Viewer
@@ -39,11 +45,13 @@
           logEntry += `<div class="logTitle">${data.logMessage}</div></div>`;           
         } else {
           
-          var eventBody = syntaxHighlight(JSON.stringify(data.logMessage.body));
-           
+          var eventBody = syntaxHighlight(JSON.stringify(data.logMessage.body, undefined, 4));
+          
+          console.log(eventBody);
+          
           logEntry += `<div class="logTitle">${data.logMessage.title}</div>`;
           logEntry += `<div class="logDescription">${data.logMessage.description}</div>`;
-          logEntry += `<div class="logBody"><pre>${eventBody}</pre></div></div></div>`        
+          logEntry += `<div class="logBody"><pre>${eventBody}</code></pre></div></div>`        
         }
 
         $('#logViewer').prepend(logEntry);
@@ -84,10 +92,21 @@
                 
     </script>
     
+                                               
+    <div class="intro">
+      Click on the Glitch button at the top right to view the source of this project or to remix it. 
+      The instructions for using the Okta Hooks Demo are in the README.md file in the source directory.
+    </div>
+                     
+    <div class="instructions">
+      The area below is a real-time Hooks viewer. When Okta calls the Hook handlers hosted by this Glitch project, 
+      the request JSON and/or the response JSON from the Hook handler will be displayed in the Hooks viewer.
+    </div>
+                                                                       
     <div class="loggerHeader">
       <div class="loggerTitle">
         <h3>
-          Real-time Hook Viewer
+          Real-time Hooks Viewer
         </h3>
       </div>
       <div class="loggerbutton">
@@ -97,14 +116,14 @@
       </div>          
     </div>
 
+    <!-- This div will be prepended with new Hook Viewer messages (via socket.io and JQuery) -->
     <div class="logViewerContainer" id="logViewerContainer">
       <div id="logViewer">
       </div>     
     </div>
                               
-                                      
-    <footer>
-      Made with <a href="https://glitch.com">Glitch</a>!
+                                          <footer>
+      Made with <a href="https://glitch.com" class="link">Glitch</a>!
     </footer>
 
     <!-- include the Glitch button to show what the webpage is about and
@@ -112,6 +131,8 @@
     <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
     <script src="https://button.glitch.me/button.js"></script> 
     
+    
+    <!-- script to clear out the Hook Viewer div -->
     <script>
       $("#clearButton").click(function() {
         $('#logViewerContainer div').html('');

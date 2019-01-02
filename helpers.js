@@ -20,12 +20,12 @@ methods.logBody = function(req) {
 // parse event hook request payload
 methods.logEventHookRequest = function(req) {
   
-  const event = req.body.events[0];
-   
-  console.log(`displayMessage:\n`, util.inspect(event.displayMessage, {showHidden: false, depth: null, colors: true, compact: false}));
-  console.log(`actor:\n`, util.inspect(event.actor, {showHidden: false, depth: null, colors: true, compact: false}));
-  console.log(`target:\n`, util.inspect(event.target, {showHidden: false, depth: null, colors: true, compact: false}));
-  console.log(`outcome:\n`, util.inspect(event.outcome, {showHidden: false, depth: null, colors: true, compact: false}));
+  req.body['events'].forEach(function(event) {
+    console.log(`displayMessage:\n`, util.inspect(event.displayMessage, {showHidden: false, depth: null, colors: true, compact: false}));
+    console.log(`actor:\n`, util.inspect(event.actor, {showHidden: false, depth: null, colors: true, compact: false}));
+    console.log(`target:\n`, util.inspect(event.target, {showHidden: false, depth: null, colors: true, compact: false}));
+    console.log(`outcome:\n`, util.inspect(event.outcome, {showHidden: false, depth: null, colors: true, compact: false}));
+  });
 }
 
 /**
