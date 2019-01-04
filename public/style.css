@@ -111,11 +111,25 @@ footer {
 
 .logTitle {
   font-size: 18pt;
+  margin-left: 20px;
+  font-weight: 500;
 }
 
-.logDescription {
+div.logDescription {
   color: #444; 
-  padding: 5px;
+  margin-left: 20px;
+  margin-top: 10px;
+  line-height: 1.2;
+}
+
+div.logDescriptionText {
+  margin-bottom: 5px;
+}
+
+div.logHint {
+  margin-top: 10px;
+  font-size: 10pt;
+  color: #646464;
 }
 
 .logBody {

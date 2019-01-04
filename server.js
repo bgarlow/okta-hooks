@@ -40,6 +40,7 @@ io.on('connection', function(socket){
     
     socket.emit('logMessage', { 'logMessage': 'Logger connected!' });
      
+    // Not used
     socket.on('receivedFromClient', function (data) {
         console.log(data);
     });
