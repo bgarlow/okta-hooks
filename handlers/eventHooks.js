@@ -38,7 +38,7 @@ router.post('/', function(req, res) {
   }
   
   title = '/okta/hooks/events';
-  description = `Okta Event Hook handler called with event type: <b>${eventType}</b>. Here's the body of the request from Okta:`;
+  description = `<div class="logDescriptionText">Okta Event Hook handler called with event type: <b>${eventType}</b>.</div><div class="logHint">Here's the body of the <b>request</b> from Okta:</div>`;
   body = req.body;
   
   hookViewer.emitViewerEvent(title, description, body, true);
@@ -66,7 +66,7 @@ router.post('/application-user-membership', function(req, res) {
   }
   
   title = '/okta/hooks/events/application-user-membership';
-  description = `Okta Event Hook handler called with event type: <b>${eventType}</b>. Here's the body of the request from Okta:`;
+  description = `<div class="logDescriptionText">Okta Event Hook handler called with event type: <b>${eventType}</b>.</div><div class="logHint">Here's the body of the <b>request</b> from Okta:</div>`;
   body = req.body;
   
   hookViewer.emitViewerEvent(title, description, body, true);
@@ -85,7 +85,7 @@ router.post('/group-user-membership', function(req, res) {
   }
   
   title = '/okta/hooks/events/group-user-membership';
-  description = `Okta Event Hook handler called with event type: <b>${eventType}</b>. Here's the body of the request from Okta:`;
+  description = `<div class="logDescriptionText">Okta Event Hook handler called with event type: <b>${eventType}</b>.</div><div class="logHint">Here's the body of the <b>request</b> from Okta:</div>`;
   body = req.body;
   
   hookViewer.emitViewerEvent(title, description, body, true);
@@ -104,7 +104,7 @@ router.post('/policy-lifecycle', function(req, res) {
   }  
 
   title = '/okta/hooks/events/policy-lifecycle';
-  description = `Okta Event Hook handler called with event type: <b>${eventType}</b>. Here's the body of the request from Okta:`;
+  description = `<div class="logDescriptionText">Okta Event Hook handler called with event type: <b>${eventType}</b>.</div><div class="logHint">Here's the body of the <b>request</b> from Okta:</div>`;
   body = req.body;
   
   hookViewer.emitViewerEvent(title, description, body, true);
@@ -123,7 +123,7 @@ router.post('/user-lifecycle', function(req, res) {
   }
   
   title = '/okta/hooks/events/user-lifecycle';
-  description = `Okta Event Hook handler called with event type: <b>${eventType}</b>. Here's the body of the request from Okta:`;
+  description = `<div class="logDescriptionText">Okta Event Hook handler called with event type: <b>${eventType}</b>.</div><div class="logHint">Here's the body of the <b>request</b> from Okta:</div>`;
   body = req.body;
   
   hookViewer.emitViewerEvent(title, description, body, true);
@@ -142,7 +142,7 @@ router.post('/user-session', function(req, res) {
   }
   
   title = '/okta/hooks/events/user-session';
-  description = `Okta Event Hook handler called with event type: <b>${eventType}</b>. Here's the body of the request from Okta:`;
+  description = `<div class="logDescriptionText">Okta Event Hook handler called with event type: <b>${eventType}</b>.</div><div class="logHint">Here's the body of the <b>request</b> from Okta:</div>`;
   body = req.body;
   
   hookViewer.emitViewerEvent(title, description, body, true);
@@ -161,7 +161,7 @@ router.post('/user-account', function(req, res) {
   }
 
   title = '/okta/hooks/events/user-account';
-  description = `Okta Event Hook handler called with event type: <b>${eventType}</b>. Here's the body of the request from Okta:`;
+  description = `<div class="logDescriptionText">Okta Event Hook handler called with event type: <b>${eventType}</b>.</div><div class="logHint">Here's the body of the <b>request</b> from Okta:</div>`;
   body = req.body;
   
   hookViewer.emitViewerEvent(title, description, body, true);

@@ -40,7 +40,12 @@ router.post('/dblookup', function(req, res) {
   helpers.logRequest(req);
   
   const payload = req.body;
-  console.log(`>>> payload.data.userProfile <<<\n`, util.inspect(payload.data.userProfile, {showHidden: false, depth: null, colors: true}));
+  
+  title = '/okta/hooks/registration/dblookup';
+  description = `<div class="logDescriptionText">Okta Registration Hook handler called.</div><div class="logHint">Here's the body of the <b>request</b> from Okta:</div>`;
+  body = req.body;
+  
+  hookViewer.emitViewerEvent(title, description, body, true); 
   
   // Make sure we have a valid request payload
   if (!payload.data.userProfile || !payload.data.userProfile.memberNumber || !payload.data.userProfile.ssn) {
@@ -75,7 +80,7 @@ router.post('/dblookup', function(req, res) {
       
     // Emit this event to the socket.io listener
     title = '/okta/hooks/registration/dblookup';
-    description = `Below is the <b>response</b> that our Hook handler will return to Okta:`;
+    description = `<div class="logDescriptionText">Below is the <b>response</b> that our Hook handler will return to Okta:</div>`;
     body = responseBody;
 
     hookViewer.emitViewerEvent(title, description, body, true);  
@@ -99,6 +104,8 @@ router.post('/dblookup', function(req, res) {
     "memberId": memberNumber,
     "ssn": memberSSN
   }
+  
+  //TODO: change the MEMBER_DATA_API value to /member-lookup
   
   const options = {
     uri: `${process.env.MEMBER_DATA_API}`,
@@ -208,6 +215,13 @@ router.post('/domain', function(req, res) {
     
   const payload = req.body;
   
+  
+  title = '/okta/hooks/registration/domain';
+  description = `<div class="logDescriptionText">Okta Registration Hook handler called.</div><div class="logHint">Here's the body of the <b>request</b> from Okta:</div>`;
+  body = req.body;
+  
+  hookViewer.emitViewerEvent(title, description, body, true);  
+  
   // Make sure we have a valid request payload
   if (!payload.data || !payload.data.userProfile) {
     // If the request payload is missing the user profile element, deny registration with a specific error
@@ -255,7 +269,7 @@ router.post('/domain', function(req, res) {
   const emailDomain = helpers.parseEmailDomain(emailAddress);
   
   title = '/okta/hooks/registration/domain';
-  description = `Below is the <b>request</b> that Okta sent to our Registration Hook`;
+  description = `<div class="logDescriptionText">Below is the <b>request</b> that Okta sent to our Registration Hook:</div>`;
   body = payload;
   
   hookViewer.emitViewerEvent(title, description, body, true);    
@@ -358,7 +372,7 @@ router.post('/domain', function(req, res) {
   if (debugContext) responseBody.debugContext = debugContext;
    
   title = '/okta/hooks/registration/domain';
-  description = `Below is the <b>response</b> that our Hook handler will return to Okta:`;
+  description = `<div class="logDescriptionText">Below is the <b>response</b> that our Hook handler will return to Okta:</div>`;
   body = responseBody;
   
   hookViewer.emitViewerEvent(title, description, body, true);  
