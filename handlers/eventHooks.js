@@ -130,6 +130,8 @@ router.post('/policy-lifecycle', function(req, res) {
 // Includes all events that begin with "user.lifecycle" 
 router.post('/user-lifecycle', function(req, res) {
   
+  console.log('This is a test to see if GitHub import works as expected');
+  
   let eventType;
   
   if (req.body.events[0]) {
