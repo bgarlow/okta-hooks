@@ -38,7 +38,8 @@ io.on('connection', function(socket){
       'Logger Status': 'connected!'
     }
     
-    socket.emit('logMessage', { 'logMessage': 'Logger connected!' });
+    // emit a startup message when the socket connects  
+    //socket.emit('logMessage', { 'logMessage': 'Logger connected!' });
      
     // Not used
     socket.on('receivedFromClient', function (data) {

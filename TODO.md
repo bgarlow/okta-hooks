@@ -1,16 +1,12 @@
+## Not started
 
-| Description | Owner | Status |
-| ------------|-------|--------|
-| auto-configure callouts and webhooks in specified Okta org |  | not started |
-| settle on path for our handlers | BTG & JPF | not started |
-| break API endpoints out into separate files | Brent | Done |
-| solicit ideas for a story-based demo for SKO | | not started |
-| add license info | | not started |
-| refactor helper functions into a separate lib | | not started |
-| | | |
+- add live Hook viewer output for errors (during DB lookup and forward in particular)
+
+## In Progress
+
+## Completed
 
 **settle on path for our handlers**:
-
 JF: Here's what I'd suggest:
 `/okta/hooks/{hook name}`
 
