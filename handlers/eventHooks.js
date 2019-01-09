@@ -19,10 +19,10 @@ let responsePayload = {}
 * Single handler for all Okta Event Hook categories
 * 
 * This handler can be registered with all supported Okta event hook types. The handler will use a switch to determine
-* what action to take based on the event type. 
+* what action to take based on the event type. This is a nice simple way to demo Event Hooks, but in a production system
+* you'd probably want separate handlers (on different endpoints) that perform different actions for different categories of events.
 *
 **/
-
 router.post('/', function(req, res) {
   
   let eventType;
@@ -31,10 +31,23 @@ router.post('/', function(req, res) {
     eventType = req.body.events[0].eventType;
   } 
  
+  const eventCategory = eventType.substring(0, eventType.lastIndexOf('.'));
+
+  // add logic to perform different actions based on event category ...
   switch(eventType) {
-    
+    case 'user.lifecycle':
+      break;
+    case 'user.session':
+      break;
+    case 'user.account':
+      break;
+    case 'application.user_membership':
+      break;
+    case 'group.user_membership':
+      break;
+    case 'policy.lifecycle':
+      break;
     default: 
-      // TODO: add logic here
   }
   
   title = '/okta/hooks/events';
@@ -51,8 +64,9 @@ router.post('/', function(req, res) {
 *
 * Individual handlers for each Okta Event Hook category
 * 
-* These handlers should be registered for a specific type of Okta Event Hooks, e.g. user.lifecycle.create, 
-* user.lifecycle.activate, etc.
+* These handlers should be registered for a specific categories of Okta Event Hooks, e.g. user.lifecycle, 
+* user.session, etc. Same concept as the single handler above, but this implementation allows us to register
+* different endpoints for each category of event type.
 * 
 **/ 
 
