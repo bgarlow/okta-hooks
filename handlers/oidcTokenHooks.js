@@ -15,7 +15,7 @@ let body;
 
 /**
 *
-* OIDC/OAuth token extensibilty Hook Handler (simple example)
+* OIDC/OAuth token extensibilty Hook Handler (simple email domain)
 *
 * 
 * 
@@ -23,9 +23,6 @@ let body;
 * This MUST be done on every request made to this endpoint to verify that the request is really from Okta.
 *
 **/
-
-// TODO: rename this route to /domain, like in the registration example
-
 router.post("/domain", (req, res) => {
 
   let requestBody = req.body;

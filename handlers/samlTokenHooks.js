@@ -15,9 +15,9 @@ let body;
 
 /**
 *
-* SAML token extensibilty Hook Handler (simple example)
+* SAML token extensibilty Hook Handler (simple email domain demo example)
 *
-* This example will use the op.add command to add a claim called 'externalData'to the assertion, 
+* This demo example will use the op.add command to add a claim called 'externalData'to the assertion, 
 * with a hardcoded value of 'NOT_IN_OKTA'. 
 *
 * If the users email domain is 'allow.example.com' we'll also issue an op.replace
@@ -27,9 +27,6 @@ let body;
 * This MUST be done on every request made to this endpoint to verify that the request is really from Okta.
 *
 **/
-
-// TODO: rename this route to /domain, like in the registration example
-
 router.post("/domain", (req, res) => {
 
   let requestBody = req.body;

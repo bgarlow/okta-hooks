@@ -1,0 +1,144 @@
+{
+	"info": {
+		"_postman_id": "23144234-d27d-421a-8524-8304a3810f8a",
+		"name": "Okta API Access Management Hooks",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register OIDC/OAuth callback with Okta (domain example)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "SSWS {{apikey}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\": \"ACTIVE\",\n    \"name\": \"OIDC/OAuth token extensibility Hook (domain)\",\n    \"type\": \"com.okta.tokens.transform\",\n    \"version\": \"1.0.0\",\n    \"channel\": {\n        \"type\": \"HTTP\",\n        \"version\": \"1.0.0\",\n        \"config\": {\n            \"uri\": \"https://okta-hooks.glitch.me/okta/hooks/oidc-token/domain\",\n            \"headers\": [],\n            \"method\": \"POST\",\n            \"authScheme\": {\n                \"type\": \"HEADER\",\n                \"key\": \"Authorization\",\n                \"value\": \"{{awsapikey}}\"\n            }\n        }\n    }\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/callbacks",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"callbacks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register OIDC/OAuth callback with Okta (dblookup example)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "SSWS {{apikey}}"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"status\": \"ACTIVE\",\n    \"name\": \"OIDC/OAuth token extensibility Hook (dblookup)\",\n    \"type\": \"com.okta.tokens.transform\",\n    \"version\": \"1.0.0\",\n    \"channel\": {\n        \"type\": \"HTTP\",\n        \"version\": \"1.0.0\",\n        \"config\": {\n            \"uri\": \"https://okta-hooks.glitch.me/okta/hooks/oidc-token/dblookup\",\n            \"headers\": [],\n            \"method\": \"POST\",\n            \"authScheme\": {\n                \"type\": \"HEADER\",\n                \"key\": \"Authorization\",\n                \"value\": \"{{awsapikey}}\"\n            }\n        }\n    }\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/callbacks",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"callbacks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update callback",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "SSWS {{apikey}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"caliropolu7R9h2pQ0h7\",\n    \"status\": \"ACTIVE\",\n    \"name\": \"OIDC/OAuth token extensibility Hook (domain)\",\n    \"type\": \"com.okta.tokens.transform\",\n    \"version\": \"1.0.0\",\n    \"channel\": {\n        \"type\": \"HTTP\",\n        \"version\": \"1.0.0\",\n        \"config\": {\n            \"uri\": \"https://okta-hooks.glitch.me/okta/hooks/oidc-token/domain\",\n            \"headers\": [],\n            \"method\": \"POST\",\n            \"authScheme\": {\n                \"type\": \"HEADER\",\n                \"key\": \"Authorization\",\n                \"value\": \"{{awsapikey}}\"\n            }\n        }\n    },\n    \"created\": \"2019-01-04T16:20:52.000Z\",\n    \"lastUpdated\": \"2019-01-04T16:20:52.000Z\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/callbacks/caliropolu7R9h2pQ0h7",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"callbacks",
+						"caliropolu7R9h2pQ0h7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a list of all registered Hooks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "SSWS {{apikey}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/callbacks",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"callbacks"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
