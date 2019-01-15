@@ -25,7 +25,7 @@ router.post("/", (req, res) => {
   var cloudEvent = req.body.data;
   console.log(`Importing user "${cloudEvent.appUser.profile.userName}" as a "${cloudEvent.action.result}"`);
 
-  title = '/okta/hooks/import';
+  title = req.originalUrl;
   description = `Okta Import Hook handler called with user: <b>${cloudEvent.appUser.profile.userName}</b> with action <b>${cloudEvent.action.result}</b>. Here's the body of the request from Okta:`;
   body = req.body;
   
