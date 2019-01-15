@@ -35,7 +35,7 @@ router.post('/exp', function(req, res) {
 *  Inline hook handler for registration with database lookup for account verification
 *
 **/
-router.post('/dblookup', function(req, res) {
+router.post('/dblookup/:post_action?', function(req, res) {
 
   helpers.logRequest(req);
   
@@ -73,7 +73,7 @@ router.post('/dblookup', function(req, res) {
     };
       
     // Emit this event to the socket.io listener
-    title = '/okta/hooks/registration/dblookup';
+    title = req.originalUrl;
     description = `<div class="logDescriptionText">Below is the <b>response</b> that our Hook handler will return to Okta:</div>`;
     body = responseBody;
 
@@ -88,7 +88,7 @@ router.post('/dblookup', function(req, res) {
   const memberSSN = userProfile.ssn;
   const memberNumber = userProfile.memberNumber;
   
-  title = '/okta/hooks/registration/dblookup';
+  title = req.originalUrl;
   description = `Below is the <b>request</b> that Okta sent to our Registration Hook`;
   body = payload;
   
@@ -187,7 +187,7 @@ router.post('/dblookup', function(req, res) {
         if (debugContext) responseBody.debugContext = debugContext;
     
         // Emit this event to the socket.io listener
-        title = '/okta/hooks/registration/dblookup';
+        title = req.originalUrl;
         description = `Below is the <b>response</b> that our Hook handler will return to Okta:`;
         body = responseBody;
   

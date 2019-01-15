@@ -29,8 +29,8 @@ router.post("/domain", (req, res) => {
   let client = requestBody.data.context.protocol.client.name;
   let issuer = requestBody.data.context.protocol.issuer.uri;
   
-  title = '/okta/hooks/oidc-token/domain';
-  description = `<div class="logDescriptionText">Okta OIDC/OAuth token Hook handler called by authorization server: <b>${issuer}</b> for client: <b>${client}</b></div><div class="tokenHint">Here's the body of the <b>request</b> from Okta:</div>`;
+  title = req.originalUrl;
+  description = `<div class="logDescriptionText">Okta OIDC/OAuth token Hook handler called by authorization server: <b>${issuer}</b> for client: <b>${client}</b></div><div class="logHint">Here's the body of the <b>request</b> from Okta:</div>`;
   body = requestBody;
   
   hookViewer.emitViewerEvent(title, description, body, true);  
@@ -97,7 +97,7 @@ router.post("/domain", (req, res) => {
   }  
   
   // log our response in the live Hook Viewer
-  title = '/okta/hooks/oidc-token';
+  title = req.originalUrl;
   description = `Below is the <b>response</b> that our Hook handler will return to Okta:`;
   body = responseBody;
 
@@ -111,27 +111,28 @@ router.post("/domain", (req, res) => {
 *
 *  OIDC/OAuth token extensibilty Hook handler (db lookup example)
 *
-*
 **/
 router.post('/dblookup', function(req, res) {
   
   let requestBody = req.body;
   let client = requestBody.data.context.protocol.client.name;
   let issuer = requestBody.data.context.protocol.issuer.uri;
+  let login = requestBody.data.context.session.login;
   let lastName = requestBody.data.context.user.profile.lastName;
   let last4;
   let externalGuid;
   let responseBody;
   let debugContext;
   
-  title = '/okta/hooks/oidc-token/dblookup';
-  description = `<div class="logDescriptionText">Okta OIDC/OAuth token Hook handler called by authorization server: <b>${issuer}</b> for OAuth client: <b>${client}</b>.</div><div class="logDescriptionText">This handler will call an external service https://member-data.glitch.me/member-info to look up the user by last name. If the user is found, the service will return the last 4 digits of the user's SSN, which will be added to a claim in the ID token. The service will also return the user's GUID from that system, which will be added as a claim 'externalGuid' on the access token.</div><div class="tokenHint">Here's the body of the <b>request</b> from Okta:</div>`;
+  title = req.originalUrl;
+  description = `<div class="logDescriptionText">Okta OIDC/OAuth token Hook handler called by authorization server: <b>${issuer}</b> for OAuth client: <b>${client}</b>.</div><div class="logDescriptionText">This handler will call an external service https://member-data.glitch.me/member-info to look up the user by last name. If the user is found, the service will return the last 4 digits of the user's SSN, which will be added to a claim in the ID token. The service will also return the user's GUID from that system, which will be added as a claim 'externalGuid' on the access token.</div><div class="logHint">Here's the body of the <b>request</b> from Okta:</div>`;
   body = requestBody;
   
   hookViewer.emitViewerEvent(title, description, body, true);  
    
   // look up the user in the member-data service and compose a claim using the last 4 of the user's SSN
   const requestJson = {
+    "login": login,
     "lastName": lastName
   }  
   
@@ -233,7 +234,7 @@ router.post('/dblookup', function(req, res) {
         }  
 
         // log our response in the live Hook Viewer
-        title = '/okta/hooks/oidc-token/dblookup';
+        title = req.originalUrl;
         description = `<div class="logDescriptionText">The user was found in the external member-data service, so additional claims were added to the ID and Access Tokens.</div><div class="logHint">Below is the <b>response</b> that our Hook handler will return to Okta:</div>`;
         body = responseBody;
 
@@ -258,7 +259,7 @@ router.post('/dblookup', function(req, res) {
         }
         
         // log our response in the live Hook Viewer
-        title = '/okta/hooks/oidc-token/dblookup';
+        title = req.originalUrl;
         description = `<div class="logDescriptionText">The user wasn't found in the external member-data service, so the handler didn't make any changes to the token. We are just going to return a context message for the Okta syslog. No 'commands' are included in the response.</div><div class="logHint">Below is the <b>response</b> that our Hook handler will return to Okta:</div>`;
         body = responseBody;
 

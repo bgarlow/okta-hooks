@@ -33,7 +33,7 @@ router.post("/domain", (req, res) => {
   let provider = requestBody.data.context.protocol.request.providerName;
   let issuer = requestBody.data.context.protocol.issuer.name;
   
-  title = '/okta/hooks/saml-token';
+  title = req.originalUrl;
   description = `Okta SAML token Hook handler called for provider: <b>${provider}</b>, issuer: <b>${issuer}</b>. Here's the body of the request from Okta:`;
   body = requestBody;
   
@@ -115,7 +115,7 @@ router.post("/domain", (req, res) => {
   }  
   
   // log our response in the live Hook Viewer
-  title = '/okta/hooks/saml-token';
+  title = req.originalUrl;
   description = `Below is the <b>response</b> that our Hook handler will return to Okta:`;
   body = responseBody;
 

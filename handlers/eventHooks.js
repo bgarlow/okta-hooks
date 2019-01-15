@@ -60,7 +60,7 @@ let handleForward = function(requestBody) {
         console.log(response.body);
 
         title = 'Hook Forward Response';
-        description = `<div class="logDescriptionText">Successfully forwarded Hook request to ${process.env.FORWARD_HANDLER_URL}</div<div class="logHint">Below is the <b>response</b> from the downstream handler:</div>`;
+        description = `<div class="logDescriptionText">Successfully forwarded Hook request to <b>${process.env.FORWARD_HANDLER_URL}</b></div><div class="logHint">Below is the <b>response</b> from the downstream handler:</div>`;
         body = response.body;
 
         hookViewer.emitViewerEvent(title, description, body, true);          
@@ -69,7 +69,7 @@ let handleForward = function(requestBody) {
         console.error(response.body);
         
         title = 'Hook Forward Response';
-        description = `<div class="logDescriptionText">Error forwarding Hook request to ${process.env.FORWARD_HANDLER_URL}</div><div class="logHint">elow is the <b>response</b> from the downstream handler:</div>`;
+        description = `<div class="logDescriptionText">Error forwarding Hook request to <b>${process.env.FORWARD_HANDLER_URL}</b></div><div class="logHint">elow is the <b>response</b> from the downstream handler:</div>`;
         body = response.body;
 
         hookViewer.emitViewerEvent(title, description, body, true);         
@@ -190,7 +190,7 @@ router.post('/policy-lifecycle/:post_action?', function(req, res) {
     eventType = req.body.events[0].eventType;
   }  
 
-  title = '/okta/hooks/event/policy-lifecycle';
+  title = req.originalUrl;
   description = `<div class="logDescriptionText">Okta Event Hook handler called with event type: <b>${eventType}</b>.</div><div class="logHint">Here's the body of the <b>request</b> from Okta:</div>`;
   body = req.body;
   
@@ -251,7 +251,7 @@ router.post('/user-account/:post_action?', function(req, res) {
   if (req.body.events[0]) {
     eventType = req.body.events[0].eventType;
   }
-
+  
   title = req.originalUrl;
   description = `<div class="logDescriptionText">Okta Event Hook handler called with event type: <b>${eventType}</b>.</div><div class="logHint">Here's the body of the <b>request</b> from Okta:</div>`;
   body = req.body;
