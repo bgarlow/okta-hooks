@@ -7,8 +7,16 @@ const io = require('socket.io')(http);
 const util = require('util');
 const bodyParser = require('body-parser');
 
+// define our hook command identifiers, as things may change during the beta
+const hookCommandTypes = {
+  idTokenPatch: 'com.okta.identity.patch',
+  accessTokenPatch: 'com.okta.access.patch',
+  samlAssertionPatch: 'com.okta.tokens.assertion.patch'
+}
+
 module.exports = {
-  "io": io
+  "io": io,
+  "hookCommandTypes": hookCommandTypes
 }
 
 // http://expressjs.com/en/starter/static-files.html

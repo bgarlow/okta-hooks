@@ -77,7 +77,7 @@ Make sure you have selected this hook in the Extension field in the Self Service
 *Prerequisite*
 Make sure you have added the custom attributes listed above to the Okta user profile in your org.
 
-#### Demo User Case
+#### Demo Use Case
 
 >In order to register for the app (which might be a financial service member portal), the user (a current bank member, insurance policy holder, etc.) must provide their SSN and Member Number, which will be verified against the institution's member database. 
 

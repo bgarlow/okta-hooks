@@ -6,6 +6,7 @@ const request = require('request');
 const util = require('util');
 const svr = require('../server.js');
 const io = svr.io;
+const hookCommandTypes = svr.hookCommandTypes;
 const helpers = require('../helpers.js');
 const hookViewer = require('../hookViewer.js');
 
@@ -100,7 +101,7 @@ router.post("/domain", (req, res) => {
   // compose the final 'commands' attribute
   const commands = [
     {
-      "type": "com.okta.tokens.assertion.patch",
+      "type": hookCommandTypes.SAMLAssertionPatch,
       "value": commandArray
     }       
   ];
@@ -218,7 +219,7 @@ router.post('/dblookup', function(req, res) {
         // compose the final 'commands' attribute
         const commands = [
           {
-            "type": "com.okta.tokens.assertion.patch",
+            "type": hookCommandTypes.samlAssertionPatch,
             "value": commandArray
           }       
         ];  
