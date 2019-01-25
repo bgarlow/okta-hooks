@@ -23,11 +23,13 @@ let responsePayload = {} // currently not used by Okta in beta implementation
 *   the format of the downstream app.
 *
 **/
-let handleForward = function(requestBody) { 
+let handleForward = function(requestBody, forwardHandler) { 
   
   const requestJson = requestBody;
   
   // Optionally perform some transformation on the Okta Hook request body before forwarding it
+  
+  /* uncomment to view forward request - only useful if you are doing some transformation
   
   title = 'Hook Forward Request';
   description = `<div class="logDescriptionText">Forwarding the Okta Hook request to <b>${process.env.FORWARD_HANDLER_URL}</b></div>`;
@@ -35,9 +37,11 @@ let handleForward = function(requestBody) {
 
   hookViewer.emitViewerEvent(title, description, body, true);    
   
+  */
+    
   // Compose the request to the downstream app that we are forwarding the Hook request to
   const options = {
-    uri: `${process.env.FORWARD_HANDLER_URL}`,
+    uri: forwardHandler,
     method: 'POST',
     headers: {
       'Accept': 'application/json',
@@ -92,7 +96,7 @@ let handleForward = function(requestBody) {
 *
 **/
 router.post('/:post_action?', function(req, res) {
-   
+    
   let eventType;
   
   if (req.body.events[0]) {
@@ -126,7 +130,7 @@ router.post('/:post_action?', function(req, res) {
   
   // if we receive a query parameter forward=true, call the optional forward function to forward the request body from Okta to another handler
   if (req.params.post_action === 'forward') {
-    handleForward(body);
+    handleForward(body, process.env.FORWARD_HANDLER_URL);
   }
   
   res.status(204).send(responsePayload);
@@ -158,6 +162,11 @@ router.post('/application-user-membership/:post_action?', function(req, res) {
   
   hookViewer.emitViewerEvent(title, description, body, true);
   
+  // if we receive a query parameter forward=true, call the optional forward function to forward the request body from Okta to another handler
+  if (req.params.post_action === 'forward') {
+    handleForward(body, process.env.FORWARD_HANDLER_URL);
+  }
+  
   res.status(204).send(responsePayload);
   
 });
@@ -177,6 +186,16 @@ router.post('/group-user-membership/:post_action?', function(req, res) {
   
   hookViewer.emitViewerEvent(title, description, body, true);
   
+  // if we receive a query parameter forward=true, call the optional forward function to forward the request body from Okta to another handler
+  if (req.params.post_action === 'forward') {
+    handleForward(body, process.env.FORWARD_HANDLER_URL);
+  }
+    
+  // if we receive a query parameter forward=true, call the optional forward function to forward the request body from Okta to another handler
+  if (req.params.post_action === 'forward') {
+    handleForward(body, process.env.FORWARD_HANDLER_URL);
+  }  
+  
   res.status(204).send(responsePayload);
   
 });
@@ -195,6 +214,11 @@ router.post('/policy-lifecycle/:post_action?', function(req, res) {
   body = req.body;
   
   hookViewer.emitViewerEvent(title, description, body, true);
+  
+  // if we receive a query parameter forward=true, call the optional forward function to forward the request body from Okta to another handler
+  if (req.params.post_action === 'forward') {
+    handleForward(body, process.env.FORWARD_HANDLER_URL);
+  }  
   
   res.status(204).send(responsePayload);
   
@@ -239,6 +263,11 @@ router.post('/user-session/:post_action?', function(req, res) {
   
   hookViewer.emitViewerEvent(title, description, body, true);
   
+  // if we receive a query parameter forward=true, call the optional forward function to forward the request body from Okta to another handler
+  if (req.params.post_action === 'forward') {
+    handleForward(body, process.env.FORWARD_HANDLER_URL);
+  }  
+  
   res.status(204).send(responsePayload);
   
 });
@@ -257,6 +286,11 @@ router.post('/user-account/:post_action?', function(req, res) {
   body = req.body;
   
   hookViewer.emitViewerEvent(title, description, body, true);
+  
+  // if we receive a query parameter forward=true, call the optional forward function to forward the request body from Okta to another handler
+  if (req.params.post_action === 'forward') {
+    handleForward(body, process.env.FORWARD_HANDLER_URL);
+  }  
   
   res.status(204).send(responsePayload);
   
